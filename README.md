@@ -35,14 +35,15 @@
 
 ## Usage
 
-This tool works locally and in CI environments. It supports macOS, Linux, and Windows (via WSL).
+This tool works locally and in CI environments. It supports **macOS**, **Linux**, and **Windows** (via Git Bash or WSL).
 
 ### Method 1: Direct Execution (Recommended)
 
-Run the analyzer directly without cloning the repository:
+Run the analyzer directly anywhere:
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/mimpungu/nextjs-inspector/main/bin/analyze.sh)
+# Works on macOS, Linux, and Windows (Git Bash / WSL)
+curl -fsSL https://raw.githubusercontent.com/mimpungu/nextjs-inspector/master/bin/analyze.sh | bash
 ```
 
 ### Method 2: Manual Download
@@ -50,7 +51,7 @@ bash <(curl -fsSL https://raw.githubusercontent.com/mimpungu/nextjs-inspector/ma
 Download the script and run it manually:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/mimpungu/nextjs-inspector/main/bin/analyze.sh -o analyze.sh
+curl -fsSL https://raw.githubusercontent.com/mimpungu/nextjs-inspector/master/bin/analyze.sh -o analyze.sh
 chmod +x analyze.sh
 ./analyze.sh
 ```
