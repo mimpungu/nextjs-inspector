@@ -50,7 +50,8 @@ function htmlShell(title, body, script) {
     [data-theme="dark"] { --bg: #0f172a; --text: #f1f5f9; --card-bg: #1e293b; --border: #334155; --header-bg: #020617; }
 
     body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); margin: 0; line-height: 1.5; display: flex; flex-direction: column; min-height: 100vh; transition: background 0.3s, color 0.3s; }
-    header { background: var(--header-bg); color: white; padding: 1.5rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    header { background: var(--header-bg); color: white; padding: 1.5rem 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .header-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 1rem; width: 100%; box-sizing: border-box; }
     .container { flex: 1; max-width: 1200px; margin: 2rem auto; padding: 0 1rem; width: 100%; box-sizing: border-box; }
     .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
     .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
@@ -87,13 +88,15 @@ function htmlShell(title, body, script) {
 </head>
 <body>
 <header>
-  <div>
-    <h1 style="margin:0; font-size: 1.5rem;">Analyse Next.js</h1>
-    <span style="font-size: 0.8rem; opacity: 0.8;">Réalisé par <strong>Deo Mimpungu</strong></span>
-  </div>
-  <div style="display:flex; gap: 10px; align-items:center;">
-    <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙 Dark Mode</button>
-    <div class="pill" style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.2);">Build Pipeline v1.0</div>
+  <div class="header-content">
+    <div>
+      <h1 style="margin:0; font-size: 1.5rem;">Analyse Next.js</h1>
+      <span style="font-size: 0.8rem; opacity: 0.8;">Réalisé par <strong>Deo Mimpungu</strong></span>
+    </div>
+    <div style="display:flex; gap: 10px; align-items:center;">
+      <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙 Dark Mode</button>
+      <div class="pill" style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.2);">Build Pipeline v1.0</div>
+    </div>
   </div>
 </header>
 <div class="container">${body}</div>
@@ -110,9 +113,31 @@ function setTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
     document.getElementById('themeBtn').innerText = theme === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode';
+    
     if(window.Chart) {
-        Chart.defaults.color = theme === 'dark' ? '#f1f5f9' : '#1e293b';
-        Chart.defaults.borderColor = theme === 'dark' ? '#334155' : '#e2e8f0';
+        // Couleurs plus contrastées pour le mode light
+        const textColor = theme === 'dark' ? '#f1f5f9' : '#0f172a';
+        const gridColor = theme === 'dark' ? '#334155' : '#cbd5e1';
+
+        Chart.defaults.color = textColor;
+        Chart.defaults.borderColor = gridColor;
+        
+        // Mettre à jour les graphiques existants
+        Object.keys(Chart.instances).forEach(function(id) {
+            const chart = Chart.instances[id];
+            chart.options.color = textColor;
+            chart.options.borderColor = gridColor;
+            
+            // Mise à jour des échelles (scales)
+            if (chart.options.scales) {
+                Object.keys(chart.options.scales).forEach(function(key) {
+                   const scale = chart.options.scales[key];
+                   if (scale.ticks) scale.ticks.color = textColor;
+                   if (scale.grid) scale.grid.color = gridColor;
+                });
+            }
+            chart.update();
+        });
     }
 }
 function toggleTheme() {
