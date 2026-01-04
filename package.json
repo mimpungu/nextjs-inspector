@@ -1,0 +1,27 @@
+{
+  "name": "nextjs-inspector",
+  "version": "1.0.0",
+  "description": "Code Quality & Security Dashboard for Next.js",
+  "type": "module",
+  "bin": {
+    "nextjs-inspector": "./bin/analyze.sh"
+  },
+  "scripts": {
+    "analyze": "./bin/analyze.sh",
+    "generate": "node scripts/generate-html-reports.mjs"
+  },
+  "keywords": [
+    "nextjs",
+    "inspector",
+    "audit",
+    "security",
+    "dashboard",
+    "static-analysis"
+  ],
+  "author": "Deo Mimpungu",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mimpungu/nextjs-inspector"
+  }
+}
