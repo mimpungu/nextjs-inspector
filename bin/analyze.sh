@@ -203,8 +203,18 @@ else
 fi
 
 # Generate HTML reports
+# Generate HTML reports
 echo "==> Generating HTML reports..."
-node ./scripts/generate-html-reports.mjs
+GEN_SCRIPT="./scripts/generate-html-reports.mjs"
+
+if [[ ! -f "$GEN_SCRIPT" ]]; then
+  # We are likely running from curl | bash, so we need to fetch the helper script
+  echo "    -> Helper script not found locally, downloading from GitHub (master)..."
+  curl -fsSL "https://raw.githubusercontent.com/mimpungu/nextjs-inspector/master/scripts/generate-html-reports.mjs" -o "$REPORT_DIR/generate-html-reports.mjs"
+  GEN_SCRIPT="$REPORT_DIR/generate-html-reports.mjs"
+fi
+
+node "$GEN_SCRIPT"
 
 echo ""
 echo "✅ Done!"
