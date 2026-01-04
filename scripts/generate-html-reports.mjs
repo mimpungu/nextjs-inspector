@@ -58,7 +58,7 @@ function htmlShell(title, body, script) {
     @media (max-width: 1024px) { .grid, .grid-2 { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 768px) { .grid, .grid-2 { grid-template-columns: 1fr; } }
     
-    .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; height: 340px; display: flex; flex-direction: column; transition: transform 0.2s, background 0.3s, border 0.3s; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; height: 280px; display: flex; flex-direction: column; transition: transform 0.2s, background 0.3s, border 0.3s; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
     .card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
     .card h2 { margin: 0; font-size: 1.1rem; color: var(--text); opacity: 0.8; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
     
