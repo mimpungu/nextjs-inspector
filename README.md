@@ -1,6 +1,15 @@
 # Next.js Inspector
 
+![Next.js](https://img.shields.io/badge/Next.js-14%2B-black?logo=next.js)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript)
+![CI](https://github.com/mimpungu/nextjs-inspector/actions/workflows/inspect.yml/badge.svg)
+![License](https://img.shields.io/badge/license-MIT-blue)
+
 **Next.js Inspector** is a comprehensive Code Quality & Security Dashboard designed specifically for Next.js applications. It combines static analysis, code style checks, and security audits into a single, modern, and interactive HTML dashboard.
+
+## Demo
+
+![Dashboard Demo](assets/dashboard-demo.png)
 
 ## Features
 
